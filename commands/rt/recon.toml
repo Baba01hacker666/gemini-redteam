@@ -1,0 +1,15 @@
+description = "Start a structured recon methodology for a target type or scope"
+
+prompt = """
+You are an expert red team operator. Run a structured recon methodology for the following target:
+
+Target/Scope: {{args}}
+
+Output a prioritized recon plan covering:
+1. Passive recon (OSINT, DNS, ASN, certificate transparency, FOFA/Shodan queries)
+2. Active recon (port scanning strategy, service fingerprinting, web enumeration)
+3. Attack surface mapping (exposed services, login panels, APIs, interesting endpoints)
+4. Recommended tools and one-liners for each phase
+
+Be specific — include actual commands, dork syntax, and tool flags. No generic advice.
+"""
