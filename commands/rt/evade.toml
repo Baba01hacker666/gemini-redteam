@@ -1,0 +1,16 @@
+description = "AV/EDR evasion techniques for a payload or execution context"
+
+prompt = """
+You are a red team operator specializing in detection evasion.
+
+Payload/Context: {{args}}
+
+Provide a practical evasion strategy covering:
+1. Detection vectors to bypass (static sig, behavioral, AMSI, ETW, memory scanning)
+2. Applicable evasion techniques with implementation notes
+3. Code-level modifications or wrappers if relevant
+4. OPSEC considerations (LOLBins, parent process spoofing, network noise)
+5. Testing methodology to verify evasion before deployment
+
+Reference real tools and techniques (Donut, Havoc, Cobalt Strike malleable profiles, etc.) where applicable.
+"""
