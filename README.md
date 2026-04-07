@@ -10,6 +10,13 @@ A Gemini CLI extension that injects a professional offensive security persona an
 - Provides **5 slash commands** for common red team workflows
 - Bundles a **redteam agent skill** activated automatically on relevant tasks
 
+## Design goals
+
+- **Operational outputs**: command-first responses with concrete next actions
+- **Prompt robustness**: templates request clarifications when critical context is missing
+- **Evidence-aware writing**: report and exploit flows separate facts, assumptions, and hypotheses
+- **Consistent structure**: every command now pushes for validation checkpoints and fallback paths
+
 ## Install
 
 ```bash
@@ -62,3 +69,10 @@ gemini-redteam/
 - Context is injected globally — all sessions where the extension is active get the red team persona
 - Commands conflict-resolve with prefix: if `/recon` exists elsewhere, these become `/gemini-redteam:rt:recon`
 - Skills are token-efficient — only activated when relevant
+
+## Recent prompt quality improvements
+
+- Added explicit handling for ambiguous input (short clarifying questions before execution).
+- Added validation checkpoints so users can confirm each step succeeded.
+- Added detection/telemetry considerations in exploit and evasion outputs.
+- Added assumptions/limitations guidance in reporting output when evidence is incomplete.

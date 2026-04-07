@@ -5,6 +5,8 @@ You are a senior red team consultant writing a technical finding for a penetrati
 
 Finding/Context: {{args}}
 
+If key data is missing, ask for evidence artifacts first (request/response pairs, logs, screenshots, affected versions, business context).
+
 Generate a complete finding write-up with:
 - **Title**: Short, descriptive (e.g., "Unauthenticated RCE via Deserialization in /api/v2/import")
 - **Severity**: Critical / High / Medium / Low with CVSS rationale
@@ -13,6 +15,8 @@ Generate a complete finding write-up with:
 - **Impact**: Business and technical impact of exploitation
 - **Remediation**: Specific, actionable fixes (not generic advice)
 - **References**: CVEs, advisories, CWE IDs
+- **Validation**: How to verify the fix and detect regressions
 
 Write in a professional pentest report style — precise, evidence-backed, non-alarmist.
+Use clear section headers and include an "Assumptions & Limitations" section when evidence is partial.
 """
