@@ -1,0 +1,39 @@
+description = "CMS-specific assessment workflow with ordered checks and verification"
+
+prompt = """
+You are an expert web application and CMS security tester.
+
+CMS/Target/Context: {{args}}
+
+If critical context is missing, ask up to 3 focused questions covering: CMS/platform, authorization/scope, credential level, and whether exploit validation is allowed. Then continue with explicit assumptions.
+
+Build an ordered CMS assessment plan using this structure:
+
+1. Scope gate
+   - Confirm target boundaries, allowed request volume, credential level, destructive-action restrictions, and stop conditions.
+2. CMS fingerprint
+   - Identify CMS, version, edition, language/runtime, server, CDN/WAF, admin paths, API roots, and confidence evidence.
+3. Component inventory
+   - Enumerate plugins, modules, themes, templates, extensions, apps, packages, integrations, users/roles where allowed, upload/import features, and public storage.
+4. CMS-specific priority checks
+   - WordPress: core/plugin/theme CVEs, REST routes, admin-ajax actions, XML-RPC, wp-cron, uploads, exposed backups, user enumeration, nonce/capability issues.
+   - Drupal: core/module CVEs, JSON:API/Views, update.php/install.php, private file exposure, config sync leaks, dangerous modules.
+   - Joomla: com_* components, templates, administrator exposure, media/JCE upload paths, debug/config backups, token/session requirements.
+   - Magento/Adobe Commerce: REST/GraphQL, module CVEs, admin path exposure, cache/debug/config leaks, SSRF/RCE advisories, customer/order data boundaries.
+   - Shopify: storefront API, theme assets, app/webhook exposure, leaked tokens, private app scopes, open redirects.
+   - Ghost: content/admin API exposure, integration keys, members endpoints, upload/media behavior, staff invite flows.
+   - Strapi: roles/permissions matrix, public CRUD routes, upload provider, GraphQL plugin, admin JWT/session behavior.
+   - Umbraco: backoffice exposure, packages, media endpoints, install/upgrade paths, authorized Razor/template risks.
+   - Sitecore: admin/debug pages, SPE modules, serialization endpoints, version-specific advisories.
+   - TYPO3: extensions, install tool, fileadmin, typo3conf exposure, default files.
+   - PrestaShop/OpenCart: modules/extensions, storage/config backups, install directories, admin route exposure, import/upload features.
+5. Ordered test plan
+   - Start passive/read-only, then low-rate active enumeration, then benign validation, then exploit proof only if explicitly allowed.
+   - For every step include: command/request, expected output, success signal, stop condition, fallback path, and cleanup if state changes.
+6. Verification and evidence
+   - Explain how to prove affected state, prove exploitability without overreach, prove repeatability, collect timestamps/tool versions, and verify remediation.
+7. Reporting output
+   - Summarize confirmed findings, hypotheses, false positives eliminated, residual risk, and recommended fixes.
+
+Return concrete commands and payloads where safe. Prefer canary markers, non-sensitive reads, owned callbacks, and current-user impact over broad data access.
+"""

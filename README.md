@@ -7,7 +7,7 @@ A Gemini CLI extension that injects a professional offensive security persona an
 ## What it does
 
 - Injects a **security research system context** into every Gemini CLI session
-- Provides **5 slash commands** for common red team workflows
+- Provides **6 slash commands** for common red team workflows
 - Bundles a **redteam agent skill** activated automatically on relevant tasks
 
 ## Design goals
@@ -33,6 +33,7 @@ Then restart your Gemini CLI session.
 | `/rt:recon <target>` | Structured recon plan for a target type/scope |
 | `/rt:exploit <vuln/context>` | Exploit chain analysis and PoC |
 | `/rt:ctf <challenge>` | CTF solver — enum to flag |
+| `/rt:cms <cms/target>` | CMS-specific assessment order, checks, and verification |
 | `/rt:evade <payload/context>` | AV/EDR evasion strategy |
 | `/rt:report <finding>` | Professional pentest finding write-up |
 
@@ -40,6 +41,7 @@ Then restart your Gemini CLI session.
 
 ```
 /rt:recon Laravel application exposed on Shodan, unknown version
+/rt:cms WordPress multisite with WooCommerce, authenticated editor account
 /rt:exploit CVE-2025-54236 Magento unauthenticated RCE
 /rt:ctf PHP web challenge with a file upload endpoint and source provided
 /rt:evade Cobalt Strike beacon, x64, Windows 11 with Defender + CrowdStrike
@@ -57,6 +59,7 @@ gemini-redteam/
 │       ├── recon.toml
 │       ├── exploit.toml
 │       ├── ctf.toml
+│       ├── cms.toml
 │       ├── evade.toml
 │       └── report.toml
 └── skills/
@@ -74,5 +77,6 @@ gemini-redteam/
 
 - Added explicit handling for ambiguous input (short clarifying questions before execution).
 - Added validation checkpoints so users can confirm each step succeeded.
+- Added CMS-specific workflows for WordPress, Drupal, Joomla, Magento/Adobe Commerce, Shopify, Ghost, Strapi, Umbraco, Sitecore, TYPO3, PrestaShop, and OpenCart.
 - Added detection/telemetry considerations in exploit and evasion outputs.
 - Added assumptions/limitations guidance in reporting output when evidence is incomplete.

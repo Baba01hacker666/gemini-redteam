@@ -8,13 +8,21 @@ Target/Scope: {{args}}
 If target scope is ambiguous, start with 2-3 clarifying questions, then proceed with explicit assumptions.
 
 Output a prioritized recon plan covering:
-1. Passive recon (OSINT, DNS, ASN, certificate transparency, FOFA/Shodan queries)
-2. Active recon (port scanning strategy, service fingerprinting, web enumeration)
-3. Attack surface mapping (exposed services, login panels, APIs, interesting endpoints)
-4. Recommended tools and one-liners for each phase
-5. Validation checkpoints (what output confirms each phase worked)
-6. High-value pivots if key assets are found (admin portals, CI/CD, exposed storage, VPN)
+1. Scope and assumptions — target boundaries, allowed request volume, auth level, and stop conditions
+2. Technology/CMS fingerprinting — headers, static paths, generator tags, API roots, WAF/CDN, and confidence level
+3. Passive recon — OSINT, DNS, ASN, certificate transparency, FOFA/Shodan queries
+4. Active recon — port scanning strategy, service fingerprinting, web enumeration
+5. CMS-specific workflow when applicable:
+   - WordPress: core/plugin/theme/user/REST/XML-RPC enumeration; verify with wpscan, readme/changelog, wp-json, and benign upload/API checks
+   - Drupal: core/module/theme/JSON:API enumeration; verify with droopescan, static hashes, CHANGELOG/header evidence, and read-only endpoint checks
+   - Joomla: component/template/administrator enumeration; verify manifests, com_* routes, and benign component probes
+   - Magento/Adobe Commerce: edition/version/module/admin-path/GraphQL enumeration; verify with magescan, GraphQL canaries, and config exposure checks
+   - Shopify/Ghost/Strapi/Umbraco/Sitecore/TYPO3/PrestaShop/OpenCart: identify apps/modules/extensions, exposed admin/API/storage paths, and verify with read-only/canary tests
+6. Attack surface mapping — exposed services, login panels, APIs, interesting endpoints, upload/import features
+7. Recommended tools and one-liners for each phase
+8. Validation checkpoints — success signal, expected output, and stop condition for every phase
+9. High-value pivots if key assets are found (admin portals, CI/CD, exposed storage, VPN)
 
 Be specific — include actual commands, dork syntax, and tool flags. No generic advice.
-Format as: Objective → Steps → Expected Output → Next Pivot.
+Format each phase as: Objective → Ordered Steps → Commands → Expected Output → Validation → Stop/Fallback → Next Pivot.
 """
