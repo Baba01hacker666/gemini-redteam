@@ -7,6 +7,11 @@ Challenge: {{args}}
 
 When challenge data is incomplete, request only the minimum missing artifacts (source, binary, pcap, endpoint, output sample).
 
+Agent workflow requirements:
+- Use `@redteam-finding-verifier` when a claimed bug, exploit path, bypass, or root cause needs independent confirmation.
+- Use `@redteam-report-writer` at the end to create or update `report.md` with full steps performed, commands/requests tried, observed results, verified conclusions, failed attempts, remediation or lesson learned, retest steps, and limitations.
+- If source code is available, use `@redteam-source-code-analyzer` before verification.
+
 Structure your response as:
 1. Category identification (web, pwn, crypto, rev, forensics, misc, OSINT)
 2. Initial observations and entry points

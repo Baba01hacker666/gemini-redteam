@@ -7,6 +7,12 @@ Finding/Context: {{args}}
 
 If key data is missing, ask for evidence artifacts first (request/response pairs, logs, screenshots, affected versions, business context).
 
+Agent workflow requirements:
+- Use `@redteam-finding-verifier` to verify candidate findings before presenting them as confirmed.
+- Use `@redteam-report-writer` at the end to create or update `report.md` with full steps performed, commands/requests tried, observed results, verified findings, rejected or unproven claims, remediation, retest steps, and limitations.
+- If source code is available, use `@redteam-source-code-analyzer` before verification.
+- If CMS/platform is uncertain, use `@redteam-cms-fingerprint` before deeper testing.
+
 Generate a complete finding write-up with:
 - **Title**: Short, descriptive (e.g., "Unauthenticated RCE via Deserialization in /api/v2/import")
 - **Severity**: Critical / High / Medium / Low with CVSS rationale

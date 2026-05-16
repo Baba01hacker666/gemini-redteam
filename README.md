@@ -8,6 +8,7 @@ A Gemini CLI extension that injects a professional offensive security persona an
 
 - Injects a **security research system context** into every Gemini CLI session
 - Provides **6 slash commands** for common red team workflows
+- Bundles **4 Gemini CLI sub-agents** for CMS fingerprinting, source analysis, finding verification, and final report writing
 - Bundles a **redteam agent skill** activated automatically on relevant tasks
 
 ## Design goals
@@ -16,6 +17,8 @@ A Gemini CLI extension that injects a professional offensive security persona an
 - **Prompt robustness**: templates request clarifications when critical context is missing
 - **Evidence-aware writing**: report and exploit flows separate facts, assumptions, and hypotheses
 - **Consistent structure**: every command now pushes for validation checkpoints and fallback paths
+- **Anti-hallucination verification**: analyzer outputs must be checked by an independent verifier before final reporting
+- **Report artifact**: workflows end by creating or updating `report.md` with steps tried, evidence, verified results, and gaps
 
 ## Install
 
@@ -36,6 +39,25 @@ Then restart your Gemini CLI session.
 | `/rt:cms <cms/target>` | CMS-specific assessment order, checks, and verification |
 | `/rt:evade <payload/context>` | AV/EDR evasion strategy |
 | `/rt:report <finding>` | Professional pentest finding write-up |
+
+## Bundled Gemini CLI agents
+
+Gemini CLI loads extension sub-agents from the `agents/` directory. You can ask the main session to delegate automatically, or force a specific agent with `@agent-name`.
+
+| Agent | Use when | Output |
+|---|---|---|
+| `@redteam-cms-fingerprint` | You need CMS/platform identification and component inventory before testing | CMS confidence, components, prioritized checks, analyzer/verifier handoff |
+| `@redteam-source-code-analyzer` | You need source-code review for routes, controllers, plugins, modules, themes, sinks, and candidate vulnerabilities | Evidence-backed candidate findings (`SC-001`, `SC-002`, ...), commands/files reviewed, verifier handoff |
+| `@redteam-finding-verifier` | Another agent reported possible findings and you need to confirm they are real | Confirmed / partially confirmed / unproven / rejected verdicts with hallucination checks |
+| `@redteam-report-writer` | The workflow is complete and a durable artifact is needed | Creates or updates `report.md` with full steps, attempts, observations, verified findings, rejected claims, remediation, and retest steps |
+
+Recommended agent order for CMS/source reviews:
+
+```text
+@redteam-cms-fingerprint → @redteam-source-code-analyzer → @redteam-finding-verifier → @redteam-report-writer
+```
+
+The final report writer must not turn analyzer hypotheses into findings unless the verifier confirms them. If no issue is verified, `report.md` must say no verified vulnerabilities were confirmed.
 
 ## Examples
 
@@ -62,6 +84,13 @@ gemini-redteam/
 │       ├── cms.toml
 │       ├── evade.toml
 │       └── report.toml
+├── agents/
+│   ├── redteam-cms-fingerprint.md
+│   ├── redteam-source-code-analyzer.md
+│   ├── redteam-finding-verifier.md
+│   └── redteam-report-writer.md
+├── docs/
+│   └── report-template.md
 └── skills/
     └── redteam/
         └── SKILL.md          # On-demand agent skill
@@ -78,5 +107,6 @@ gemini-redteam/
 - Added explicit handling for ambiguous input (short clarifying questions before execution).
 - Added validation checkpoints so users can confirm each step succeeded.
 - Added CMS-specific workflows for WordPress, Drupal, Joomla, Magento/Adobe Commerce, Shopify, Ghost, Strapi, Umbraco, Sitecore, TYPO3, PrestaShop, and OpenCart.
+- Added Gemini CLI sub-agents for CMS fingerprinting, source code analysis, finding verification, and `report.md` generation.
 - Added detection/telemetry considerations in exploit and evasion outputs.
 - Added assumptions/limitations guidance in reporting output when evidence is incomplete.
