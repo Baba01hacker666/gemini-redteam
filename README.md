@@ -4,6 +4,23 @@ Red team Gemini CLI extension and Google Antigravity plugin
 
 A dual-use Gemini CLI extension and Google Antigravity plugin that injects a professional offensive security persona and provides red team workflows.
 
+## Install
+
+### Gemini CLI
+
+```bash
+# From GitHub
+gemini extensions install https://github.com/Baba01hacker666/gemini-redteam
+```
+
+Then restart your Gemini CLI session.
+
+### Google Antigravity
+
+```bash
+agy install https://github.com/Baba01hacker666/gemini-redteam
+```
+
 ## What it does
 
 - Injects a **security research system context** into Gemini CLI sessions through `GEMINI.md`
@@ -21,44 +38,6 @@ A dual-use Gemini CLI extension and Google Antigravity plugin that injects a pro
 - **Anti-hallucination verification**: analyzer outputs must be checked by an independent verifier before final reporting
 - **Evidence standardization**: verified findings require affected state proof, exploitability or impact proof, negative controls, reproduction metadata, and retest steps
 - **Report artifact**: workflows end by creating or updating `report.md` with steps tried, evidence, verified results, and gaps
-
-## Install
-
-### Gemini CLI
-
-```bash
-# From GitHub
-gemini extensions install https://github.com/Baba01hacker666/gemini-redteam
-```
-
-Then restart your Gemini CLI session.
-
-### Google Antigravity
-```bash
-agy install https://github.com/Baba01hacker666/gemini-redteam
-```
-
-Antigravity plugins are loaded from plugin directories that contain `plugin.json` plus optional `skills/`, `rules/`, `mcp_config.json`, and `hooks.json` files.
-
-Use this repo as a workspace-level plugin by placing or cloning it under an opened workspace:
-
-```text
-<workspace>/.agents/plugins/gemini-redteam/
-```
-
-or:
-
-```text
-<workspace>/_agents/plugins/gemini-redteam/
-```
-
-Use it globally by placing or cloning it under:
-
-```text
-~/.gemini/config/plugins/gemini-redteam/
-```
-
-Antigravity will load the focused skills in `skills/` and the red team operating rules in `rules/redteam.md`. Gemini CLI slash commands in `commands/rt/` remain Gemini-specific.
 
 ## Commands
 
