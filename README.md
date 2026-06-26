@@ -1,15 +1,16 @@
 # gemini-redteam
-Red team gemini skills and plugins 
+Red team Gemini CLI extension and Google Antigravity plugin
 
 
-A Gemini CLI extension that injects a professional offensive security persona and provides red team slash commands.
+A dual-use Gemini CLI extension and Google Antigravity plugin that injects a professional offensive security persona and provides red team workflows.
 
 ## What it does
 
-- Injects a **security research system context** into every Gemini CLI session
-- Provides **6 slash commands** for common red team workflows
+- Injects a **security research system context** into Gemini CLI sessions through `GEMINI.md`
+- Provides **6 Gemini CLI slash commands** for common red team workflows
 - Bundles **4 Gemini CLI sub-agents** for CMS fingerprinting, source analysis, finding verification, and final report writing
-- Bundles **6 red team skills** activated automatically for focused workflows
+- Bundles **6 skills** for Gemini-compatible and Antigravity workflows
+- Provides an **Antigravity plugin manifest** and red team rule under `plugin.json` and `rules/`
 
 ## Design goals
 
@@ -23,12 +24,38 @@ A Gemini CLI extension that injects a professional offensive security persona an
 
 ## Install
 
+### Gemini CLI
+
 ```bash
 # From GitHub
 gemini extensions install https://github.com/Baba01hacker666/gemini-redteam
 ```
 
 Then restart your Gemini CLI session.
+
+### Google Antigravity
+
+Antigravity plugins are loaded from plugin directories that contain `plugin.json` plus optional `skills/`, `rules/`, `mcp_config.json`, and `hooks.json` files.
+
+Use this repo as a workspace-level plugin by placing or cloning it under an opened workspace:
+
+```text
+<workspace>/.agents/plugins/gemini-redteam/
+```
+
+or:
+
+```text
+<workspace>/_agents/plugins/gemini-redteam/
+```
+
+Use it globally by placing or cloning it under:
+
+```text
+~/.gemini/config/plugins/gemini-redteam/
+```
+
+Antigravity will load the focused skills in `skills/` and the red team operating rules in `rules/redteam.md`. Gemini CLI slash commands in `commands/rt/` remain Gemini-specific.
 
 ## Commands
 
@@ -88,8 +115,9 @@ Gemini CLI loads extension skills from the `skills/` directory. The broad `redte
 
 ```
 gemini-redteam/
-├── gemini-extension.json     # Manifest
-├── GEMINI.md                 # System context injected every session
+├── gemini-extension.json     # Gemini CLI extension manifest
+├── plugin.json               # Antigravity plugin marker
+├── GEMINI.md                 # Gemini CLI system context
 ├── commands/
 │   └── rt/
 │       ├── recon.toml
@@ -105,6 +133,8 @@ gemini-redteam/
 │   └── redteam-report-writer.md
 ├── docs/
 │   └── report-template.md
+├── rules/
+│   └── redteam.md            # Antigravity red team operating rule
 └── skills/
     ├── redteam/
     │   └── SKILL.md          # Broad offensive-security skill
@@ -122,9 +152,11 @@ gemini-redteam/
 
 ## Notes
 
-- Context is injected globally — all sessions where the extension is active get the red team persona
-- Commands conflict-resolve with prefix: if `/recon` exists elsewhere, these become `/gemini-redteam:rt:recon`
-- Skills are token-efficient — only activated when relevant
+- Gemini CLI context is injected globally through `GEMINI.md` when the extension is active.
+- Antigravity loads `plugin.json`, `skills/`, and `rules/` when this repo is placed in a supported plugin directory.
+- Gemini CLI commands conflict-resolve with prefix: if `/recon` exists elsewhere, these become `/gemini-redteam:rt:recon`.
+- Gemini CLI sub-agents in `agents/` are Gemini-specific; Antigravity support currently uses skills and rules.
+- Skills are token-efficient — only activated when relevant.
 
 ## Recent prompt quality improvements
 
@@ -133,6 +165,7 @@ gemini-redteam/
 - Added CMS-specific workflows for WordPress, Drupal, Joomla, Magento/Adobe Commerce, Shopify, Ghost, Strapi, Umbraco, Sitecore, TYPO3, PrestaShop, and OpenCart.
 - Added Gemini CLI sub-agents for CMS fingerprinting, source code analysis, finding verification, and `report.md` generation.
 - Added focused skills for recon, CMS assessment, source audit, exploit validation, and evidence-backed reporting.
+- Added Google Antigravity plugin support with `plugin.json` and `rules/redteam.md`.
 - Added a shared evidence standard for affected-state proof, exploitability/impact proof, negative controls, reproduction metadata, and remediation retests.
 - Added detection/telemetry considerations in exploit and evasion outputs.
 - Added assumptions/limitations guidance in reporting output when evidence is incomplete.
