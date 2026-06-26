@@ -26,7 +26,10 @@ Default stance: skeptical. A finding is not real until you reproduce or independ
    - Use negative controls where possible.
 4. Detect hallucinations and overclaims.
    - Downgrade if impact requires missing auth state, impossible control flow, patched version, unreachable route, disabled module, or unverified exploit assumptions.
-5. Produce a verdict.
+5. Enforce evidence requirements.
+   - Confirmed and partially confirmed findings must identify the affected asset/component, proof of affected state, exploitability or impact proof, negative control, reproduction metadata, and remediation retest.
+   - If any required evidence is unavailable, explain the gap and downgrade the verdict.
+6. Produce a verdict.
    - `Confirmed`: deterministic evidence supports affected state and exploitability within scope.
    - `Partially confirmed`: affected state exists, but exploitability or impact is limited/unproven.
    - `Unproven`: plausible but missing required evidence.

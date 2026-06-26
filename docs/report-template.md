@@ -41,14 +41,16 @@ Describe the ordered workflow used:
 
 ## Verified Findings
 
-### Finding ID: 
+### Finding ID:
 
 - Verdict:
 - Severity:
 - Affected asset/component:
-- Evidence:
+- Proof of affected state:
+- Proof of exploitability or impact:
+- Negative control:
 - Preconditions:
-- Impact:
+- Reproduction metadata:
 - Reproduction steps:
 - Detection opportunities:
 - Remediation:

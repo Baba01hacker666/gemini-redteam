@@ -27,7 +27,10 @@ You must transform analyzer, recon, CMS, exploit, and verifier outputs into a cl
    - If missing, create it.
 4. Include reproducibility.
    - Add exact commands/requests tried, timestamps if available, expected vs observed output, tool versions when known, cleanup performed, and retest steps.
-5. Call out gaps.
+5. Enforce finding evidence.
+   - For each confirmed or partially confirmed finding, include affected asset/component, proof of affected state, exploitability or impact proof, negative control, reproduction metadata, and remediation retest.
+   - If one of those fields is missing, keep the item in `Rejected or Unproven Claims` instead of `Verified Findings`.
+6. Call out gaps.
    - List missing credentials, blocked probes, rate limits, unavailable tools, unresolved assumptions, and anything that prevented verification.
 
 ## Required `report.md` structure

@@ -62,6 +62,19 @@ Rules:
 - The final `report.md` must include full steps performed, commands/requests tried, observed results, dead ends, verified findings, rejected/unproven claims, remediation, retest steps, and limitations.
 - If no vulnerabilities are verified, the report must explicitly state that no verified vulnerabilities were confirmed.
 
+## Evidence Standard
+
+Every confirmed or partially confirmed finding must include:
+
+- **Affected asset/component** — host, route, package, module, plugin, file, function, version, or config key.
+- **Proof of affected state** — version range, code path, configuration, response excerpt, package metadata, or reproducible command output.
+- **Proof of exploitability or impact** — benign canary, current-user impact, non-sensitive read, timing delta, controlled callback, or source-level sink trace.
+- **Negative control** — patched version, unauthenticated/authenticated contrast, invalid payload, blocked role, disabled module, or clean endpoint comparison.
+- **Reproduction metadata** — exact command/request, timestamp when available, tool version when available, source IP/context if relevant, and cleanup performed.
+- **Remediation retest** — the exact proof that should fail after the fix plus version/config evidence for the patched state.
+
+If any required evidence is missing, downgrade the item to `Unproven` or `Hypothesis` and state the gap explicitly.
+
 ## Custom Commands Available
 
 | Command | Description |

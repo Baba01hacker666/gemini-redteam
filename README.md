@@ -9,7 +9,7 @@ A Gemini CLI extension that injects a professional offensive security persona an
 - Injects a **security research system context** into every Gemini CLI session
 - Provides **6 slash commands** for common red team workflows
 - Bundles **4 Gemini CLI sub-agents** for CMS fingerprinting, source analysis, finding verification, and final report writing
-- Bundles a **redteam agent skill** activated automatically on relevant tasks
+- Bundles **6 red team skills** activated automatically for focused workflows
 
 ## Design goals
 
@@ -18,6 +18,7 @@ A Gemini CLI extension that injects a professional offensive security persona an
 - **Evidence-aware writing**: report and exploit flows separate facts, assumptions, and hypotheses
 - **Consistent structure**: every command now pushes for validation checkpoints and fallback paths
 - **Anti-hallucination verification**: analyzer outputs must be checked by an independent verifier before final reporting
+- **Evidence standardization**: verified findings require affected state proof, exploitability or impact proof, negative controls, reproduction metadata, and retest steps
 - **Report artifact**: workflows end by creating or updating `report.md` with steps tried, evidence, verified results, and gaps
 
 ## Install
@@ -59,6 +60,19 @@ Recommended agent order for CMS/source reviews:
 
 The final report writer must not turn analyzer hypotheses into findings unless the verifier confirms them. If no issue is verified, `report.md` must say no verified vulnerabilities were confirmed.
 
+## Bundled skills
+
+Gemini CLI loads extension skills from the `skills/` directory. The broad `redteam` skill remains available, and focused skills provide lighter workflow-specific context.
+
+| Skill | Use when |
+|---|---|
+| `redteam` | General offensive-security research, CMS testing, exploit analysis, CTFs, and reporting |
+| `redteam-recon` | Building recon plans, enumerating attack surface, and prioritizing pivots |
+| `redteam-cms` | Fingerprinting and assessing CMS platforms, plugins, modules, themes, and extensions |
+| `redteam-source-audit` | Reviewing repository source code and producing verifier-ready candidate findings |
+| `redteam-exploit-validation` | Safely validating exploitability with proof ladders, controls, cleanup, and telemetry notes |
+| `redteam-reporting` | Creating evidence-backed findings and `report.md` artifacts from verified work |
+
 ## Examples
 
 ```
@@ -92,8 +106,18 @@ gemini-redteam/
 ├── docs/
 │   └── report-template.md
 └── skills/
-    └── redteam/
-        └── SKILL.md          # On-demand agent skill
+    ├── redteam/
+    │   └── SKILL.md          # Broad offensive-security skill
+    ├── redteam-recon/
+    │   └── SKILL.md          # Recon and attack-surface skill
+    ├── redteam-cms/
+    │   └── SKILL.md          # CMS assessment skill
+    ├── redteam-source-audit/
+    │   └── SKILL.md          # Source-code review skill
+    ├── redteam-exploit-validation/
+    │   └── SKILL.md          # Safe exploit validation skill
+    └── redteam-reporting/
+        └── SKILL.md          # Evidence-backed reporting skill
 ```
 
 ## Notes
@@ -108,5 +132,7 @@ gemini-redteam/
 - Added validation checkpoints so users can confirm each step succeeded.
 - Added CMS-specific workflows for WordPress, Drupal, Joomla, Magento/Adobe Commerce, Shopify, Ghost, Strapi, Umbraco, Sitecore, TYPO3, PrestaShop, and OpenCart.
 - Added Gemini CLI sub-agents for CMS fingerprinting, source code analysis, finding verification, and `report.md` generation.
+- Added focused skills for recon, CMS assessment, source audit, exploit validation, and evidence-backed reporting.
+- Added a shared evidence standard for affected-state proof, exploitability/impact proof, negative controls, reproduction metadata, and remediation retests.
 - Added detection/telemetry considerations in exploit and evasion outputs.
 - Added assumptions/limitations guidance in reporting output when evidence is incomplete.
