@@ -34,6 +34,9 @@ gemini extensions install https://github.com/Baba01hacker666/gemini-redteam
 Then restart your Gemini CLI session.
 
 ### Google Antigravity
+```bash
+agy install https://github.com/Baba01hacker666/gemini-redteam
+```
 
 Antigravity plugins are loaded from plugin directories that contain `plugin.json` plus optional `skills/`, `rules/`, `mcp_config.json`, and `hooks.json` files.
 
