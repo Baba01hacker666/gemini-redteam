@@ -1,8 +1,8 @@
 # gemini-redteam
-Red team Gemini CLI extension and Google Antigravity plugin
+Red team SKILL
 
 
-A dual-use Gemini CLI extension and Google Antigravity plugin that injects a professional offensive security persona and provides red team workflows.
+A multi agentiic workflow that injects a professional offensive security persona and provides red team workflows.
 
 ## Install
 
