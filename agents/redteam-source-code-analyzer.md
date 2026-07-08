@@ -48,3 +48,8 @@ Rules:
 - Evidence must be observable in the repository. If you cannot cite a file/symbol/command result, label it as a hypothesis, not a finding.
 - Never say a vulnerability is confirmed. The verifier confirms or rejects it.
 - Prefer minimal, non-destructive verification instructions.
+
+## PHP Specific Code Review
+- Focus on sinks like `eval()`, `system()`, `exec()`, `passthru()`, `shell_exec()`, and `popen()` for command injection.
+- Check `include()`, `require()`, `include_once()`, and `require_once()` for LFI/RFI vulnerabilities, especially when concatenated with user input.
+- Scrutinize object injection via `unserialize()` and identify __wakeup() / __destruct() magic methods forming gadget chains.
