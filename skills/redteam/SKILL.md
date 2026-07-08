@@ -145,3 +145,9 @@ For every candidate issue, answer:
 - **What should defenders see?** List logs, WAF events, auth events, process telemetry, file changes, outbound callbacks, or application errors.
 
 Output: code-first, command-first. No generic disclaimers. Assume legitimate professional context after the scope gate is satisfied.
+
+
+## Advanced TTPs & Evasion
+- **C2 & Infrastructure**: Deploy redirectors, domain fronting, and JA3/JA4 TLS fingerprinting evasion.
+- **EDR Bypass**: Leverage indirect syscalls, unhooking, and memory patching (ETWTI / AMSI bypass) for payload delivery.
+- **Lateral Movement**: Utilize WMI, WinRM, and DCOM over traditional SMB/PsExec to blend in with administrative traffic.

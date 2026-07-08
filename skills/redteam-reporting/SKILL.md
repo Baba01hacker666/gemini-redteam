@@ -77,3 +77,8 @@ Activate when the user asks to:
 - No invented CVEs, routes, screenshots, logs, versions, or business impact.
 
 Use `@redteam-report-writer` when a durable `report.md` artifact is needed.
+
+## Executive Framing & Risk Prioritization
+- **Risk Calculation**: Use CVSS v3.1/v4.0 scoring combined with EPSS (Exploit Prediction Scoring System) to accurately frame real-world risk.
+- **MITRE ATT&CK Mapping**: Map every verified finding to specific MITRE ATT&CK Tactics and Techniques (e.g., T1190 - Exploit Public-Facing Application).
+- **Root Cause Analysis (RCA)**: Differentiate between a tactical fix (patching the specific input) and a strategic fix (implementing global WAF rules or adopting memory-safe languages).

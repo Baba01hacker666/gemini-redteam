@@ -65,3 +65,11 @@ Return Markdown with:
 - `Report notes`
 
 Confirmed findings require affected-state proof, exploitability or impact proof, a negative control, reproduction metadata, and remediation retest steps.
+
+## Advanced CMS Exploitation & Bypass
+- **WAF Evasion**: Utilize HTTP Request Smuggling (CL.TE / TE.CL) or chunked encoding to bypass Edge WAFs before hitting the CMS.
+- **Authenticated RCE paths**: 
+  - *WordPress*: Malicious theme/plugin ZIP uploads, editing `functions.php` via Theme Editor.
+  - *Joomla*: Template manipulation to execute PHP.
+  - *Drupal*: Utilizing the PHP Filter module or abusing Twig templates.
+- **Timing Attacks**: Use sleep-based payloads to blindly enumerate CMS user existence or blind SQLi in CMS core/plugins.

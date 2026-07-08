@@ -70,3 +70,8 @@ Return Markdown with:
 ## Evidence bar
 
 A candidate must cite observable repository evidence: file path, symbol, route, config, package metadata, or command result. If the evidence is incomplete, label it as a hypothesis and state the missing proof.
+
+## Deep Source & CI/CD Auditing
+- **CI/CD Pipelines**: Audit GitHub Actions (`.github/workflows/`), GitLab CI, and Jenkinsfiles for script injection, vulnerable runners, or token exposure (e.g., `pull_request_target`).
+- **Deserialization**: Trace untrusted data into `unserialize()` (PHP), `pickle.loads()` (Python), or `ObjectInputStream` (Java). Identify gadget chains using `ysoserial` or `phpggc`.
+- **AST & SAST Analysis**: Use tools like Semgrep with custom rulesets tailored to the specific framework's routing and ORM to uncover IDOR and Mass Assignment vulnerabilities.

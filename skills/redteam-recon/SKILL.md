@@ -78,3 +78,9 @@ For every candidate, capture:
 - What would confirm or falsify it
 
 Do not call a vulnerability confirmed until verified with reproducible evidence.
+
+## Advanced Reconnaissance Methods
+- **Cloud Infrastructure**: Enumerate AWS S3, GCP Buckets, and Azure Blobs using `cloud_enum` and permutations.
+- **BGP & ASN Analysis**: Map organizational infrastructure via ASN lookups (`whois -h whois.radb.net -- '-i origin AS1234'`).
+- **GitHub OSINT**: Hunt for leaked CI/CD tokens, SSH keys, and staging environment URLs using `trufflehog` or `gitrob`.
+- **Acquisition Tracking**: Monitor Crunchbase and SEC filings for newly acquired subsidiaries that may lack mature security.
