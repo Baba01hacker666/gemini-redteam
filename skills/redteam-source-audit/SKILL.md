@@ -28,11 +28,11 @@ Activate when the user asks to:
 5. **Candidate findings**
    - Create candidate findings only when source evidence exists.
    - Use stable IDs: `SC-001`, `SC-002`, etc.
-   - Never claim confirmation; hand off to `@redteam-finding-verifier`.
+   - Never claim confirmation; verify the finding independently.
 6. **Verification support**
    - Provide minimal non-destructive verification steps, negative controls, and what would falsify each finding.
 7. **Reporting support**
-   - Preserve reviewed files, searches, dead ends, evidence gaps, and assumptions for `@redteam-report-writer`.
+   - Preserve reviewed files, searches, dead ends, evidence gaps, and assumptions for the final report.
 
 ## Output contract
 

@@ -19,7 +19,7 @@ Activate when the user asks to:
    - If live probing is not approved, restrict output to passive/local checks.
 2. **Fingerprint**
    - Identify platform, version, edition, language/runtime, server, CDN/WAF, admin paths, API roots, and confidence evidence.
-   - Use `@redteam-cms-fingerprint` when platform or component inventory is uncertain.
+   - Perform a thorough fingerprinting step when platform or component inventory is uncertain.
 3. **Component inventory**
    - Enumerate plugins, modules, themes, templates, extensions, apps, packages, API endpoints, users/roles where allowed, upload/import features, and public storage.
 4. **Known-risk mapping**
@@ -29,9 +29,9 @@ Activate when the user asks to:
    - Prefer read-only probes, benign canaries, current-user impact, non-sensitive reads, and controlled callbacks.
    - Include success signals, stop conditions, and cleanup for any state-changing test.
 6. **Independent verification**
-   - Send candidate findings to `@redteam-finding-verifier` before reporting them as confirmed.
+   - Independently verify all candidate findings before reporting them as confirmed.
 7. **Report handoff**
-   - Use `@redteam-report-writer` to create or update `report.md` with verified findings, rejected claims, commands tried, and limitations.
+   - Create or update `report.md` with verified findings, rejected claims, commands tried, and limitations.
 
 ## CMS priority matrix
 

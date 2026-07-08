@@ -76,7 +76,7 @@ Activate when the user asks to:
 - Specific remediation, not generic security advice.
 - No invented CVEs, routes, screenshots, logs, versions, or business impact.
 
-Use `@redteam-report-writer` when a durable `report.md` artifact is needed.
+Generate a durable `report.md` artifact to conclude the assessment.
 
 ## Executive Framing & Risk Prioritization
 - **Risk Calculation**: Use CVSS v3.1/v4.0 scoring combined with EPSS (Exploit Prediction Scoring System) to accurately frame real-world risk.

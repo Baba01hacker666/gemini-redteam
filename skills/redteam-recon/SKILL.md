@@ -30,9 +30,9 @@ Activate when the user asks to:
    - Group assets by ownership confidence, technology stack, auth exposure, admin panels, APIs, upload/import features, storage exposure, staging/dev indicators, and CMS fingerprints.
 6. **Candidate generation**
    - Produce hypotheses with evidence gaps, not confirmed findings.
-   - Route CMS targets to `@redteam-cms-fingerprint`, source-backed issues to `@redteam-source-code-analyzer`, and candidate findings to `@redteam-finding-verifier`.
+   - Apply specific methodologies (CMS fingerprinting, source code analysis, finding verification) to appropriate targets.
 7. **Reporting handoff**
-   - Record commands tried, observed outputs, dead ends, rate limits, assumptions, and verification gaps for `@redteam-report-writer`.
+   - Record commands tried, observed outputs, dead ends, rate limits, assumptions, and verification gaps for the final report.
 
 ## Output contract
 
