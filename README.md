@@ -6,14 +6,14 @@ A multi agentiic workflow that injects a professional offensive security persona
 
 ## Install
 
-### Gemini CLI
+### multi agent skills
 
 ```bash
 # From GitHub
-gemini extensions install https://github.com/Baba01hacker666/gemini-redteam
+npx skills add Baba01hacker666/gemini-redteam
 ```
 
-Then restart your Gemini CLI session.
+Then restart your multi agent skills session.
 
 ### Google Antigravity
 
@@ -23,10 +23,10 @@ agy install https://github.com/Baba01hacker666/gemini-redteam
 
 ## What it does
 
-- Injects a **security research system context** into Gemini CLI sessions through `GEMINI.md`
-- Provides **6 Gemini CLI slash commands** for common red team workflows
-- Bundles **4 Gemini CLI sub-agents** for CMS fingerprinting, source analysis, finding verification, and final report writing
-- Bundles **6 skills** for Gemini-compatible and Antigravity workflows
+- Injects a **security research system context** into multi agent skills sessions through `GEMINI.md`
+- Provides **6 multi agent skills slash commands** for common red team workflows
+- Bundles **4 multi agent skills sub-agents** for CMS fingerprinting, source analysis, finding verification, and final report writing
+- Bundles **6 skills** for multi agent skills-compatible and Antigravity workflows
 - Provides an **Antigravity plugin manifest** and red team rule under `plugin.json` and `rules/`
 
 ## Design goals
@@ -50,9 +50,9 @@ agy install https://github.com/Baba01hacker666/gemini-redteam
 | `/rt:evade <payload/context>` | AV/EDR evasion strategy |
 | `/rt:report <finding>` | Professional pentest finding write-up |
 
-## Bundled Gemini CLI agents
+## Bundled multi agent skills agents
 
-Gemini CLI loads extension sub-agents from the `agents/` directory. You can ask the main session to delegate automatically, or force a specific agent with `@agent-name`.
+multi agent skills loads extension sub-agents from the `agents/` directory. You can ask the main session to delegate automatically, or force a specific agent with `@agent-name`.
 
 | Agent | Use when | Output |
 |---|---|---|
@@ -71,7 +71,7 @@ The final report writer must not turn analyzer hypotheses into findings unless t
 
 ## Bundled skills
 
-Gemini CLI loads extension skills from the `skills/` directory. The broad `redteam` skill remains available, and focused skills provide lighter workflow-specific context.
+multi agent skills loads extension skills from the `skills/` directory. The broad `redteam` skill remains available, and focused skills provide lighter workflow-specific context.
 
 | Skill | Use when |
 |---|---|
@@ -97,9 +97,9 @@ Gemini CLI loads extension skills from the `skills/` directory. The broad `redte
 
 ```
 gemini-redteam/
-├── gemini-extension.json     # Gemini CLI extension manifest
+├── gemini-extension.json     # multi agent skills extension manifest
 ├── plugin.json               # Antigravity plugin marker
-├── GEMINI.md                 # Gemini CLI system context
+├── GEMINI.md                 # multi agent skills system context
 ├── commands/
 │   └── rt/
 │       ├── recon.toml
@@ -134,10 +134,10 @@ gemini-redteam/
 
 ## Notes
 
-- Gemini CLI context is injected globally through `GEMINI.md` when the extension is active.
+- multi agent skills context is injected globally through `GEMINI.md` when the extension is active.
 - Antigravity loads `plugin.json`, `skills/`, and `rules/` when this repo is placed in a supported plugin directory.
-- Gemini CLI commands conflict-resolve with prefix: if `/recon` exists elsewhere, these become `/gemini-redteam:rt:recon`.
-- Gemini CLI sub-agents in `agents/` are Gemini-specific; Antigravity support currently uses skills and rules.
+- multi agent skills commands conflict-resolve with prefix: if `/recon` exists elsewhere, these become `/gemini-redteam:rt:recon`.
+- multi agent skills sub-agents in `agents/` are multi agent skills-specific; Antigravity support currently uses skills and rules.
 - Skills are token-efficient — only activated when relevant.
 
 ## Recent prompt quality improvements
@@ -145,7 +145,7 @@ gemini-redteam/
 - Added explicit handling for ambiguous input (short clarifying questions before execution).
 - Added validation checkpoints so users can confirm each step succeeded.
 - Added CMS-specific workflows for WordPress, Drupal, Joomla, Magento/Adobe Commerce, Shopify, Ghost, Strapi, Umbraco, Sitecore, TYPO3, PrestaShop, and OpenCart.
-- Added Gemini CLI sub-agents for CMS fingerprinting, source code analysis, finding verification, and `report.md` generation.
+- Added multi agent skills sub-agents for CMS fingerprinting, source code analysis, finding verification, and `report.md` generation.
 - Added focused skills for recon, CMS assessment, source audit, exploit validation, and evidence-backed reporting.
 - Added Google Antigravity plugin support with `plugin.json` and `rules/redteam.md`.
 - Added a shared evidence standard for affected-state proof, exploitability/impact proof, negative controls, reproduction metadata, and remediation retests.
