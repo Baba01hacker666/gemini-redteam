@@ -137,3 +137,5 @@ Output: code-first, command-first. No generic disclaimers. Assume legitimate pro
 - **C2 & Infrastructure**: Deploy redirectors, domain fronting, and JA3/JA4 TLS fingerprinting evasion.
 - **EDR Bypass**: Leverage indirect syscalls, unhooking, and memory patching (ETWTI / AMSI bypass) for payload delivery.
 - **Lateral Movement**: Utilize WMI, WinRM, and DCOM over traditional SMB/PsExec to blend in with administrative traffic.
+
+- **Payload Naming (OPSEC)**: Never use blatant backdoor names like `shell.php`, `cmd.php`, or `test.php`. Blend into the target environment by using convincing names related to the application's context (e.g., `class-wp-cache-helper.php`, `config-update.php`, or `index_backup.php`).

@@ -73,3 +73,5 @@ Confirmed findings require affected-state proof, exploitability or impact proof,
   - *Joomla*: Template manipulation to execute PHP.
   - *Drupal*: Utilizing the PHP Filter module or abusing Twig templates.
 - **Timing Attacks**: Use sleep-based payloads to blindly enumerate CMS user existence or blind SQLi in CMS core/plugins.
+
+- **Payload Naming (OPSEC)**: Never use blatant backdoor names like `shell.php`, `cmd.php`, or `test.php`. Blend into the target environment by using convincing names related to the application's context (e.g., `class-wp-cache-helper.php`, `config-update.php`, or `index_backup.php`).

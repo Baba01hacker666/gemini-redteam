@@ -53,3 +53,5 @@ Rules:
 - Focus on sinks like `eval()`, `system()`, `exec()`, `passthru()`, `shell_exec()`, and `popen()` for command injection.
 - Check `include()`, `require()`, `include_once()`, and `require_once()` for LFI/RFI vulnerabilities, especially when concatenated with user input.
 - Scrutinize object injection via `unserialize()` and identify __wakeup() / __destruct() magic methods forming gadget chains.
+
+- **Payload Naming (OPSEC)**: Never use blatant backdoor names like `shell.php`, `cmd.php`, or `test.php`. Blend into the target environment by using convincing names related to the application's context (e.g., `class-wp-cache-helper.php`, `config-update.php`, or `index_backup.php`).

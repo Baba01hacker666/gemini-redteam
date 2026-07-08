@@ -47,3 +47,5 @@ Rules:
 ## PHP and Subdomain Focus
 - **Subdomain Enumeration**: Always utilize passive (crt.sh, subfinder) and active (amass, dnsx) DNS reconnaissance to map the full attack surface before focusing on a single CMS target.
 - **PHP Deep Dive**: When analyzing PHP-based CMS (WordPress, Drupal, Joomla), prioritize checks on file upload functionality, loose type comparisons (`==` vs `===`), unsafe uses of `unserialize()`, and exposed debug logs (`debug.log`, `error_log`).
+
+- **Payload Naming (OPSEC)**: Never use blatant backdoor names like `shell.php`, `cmd.php`, or `test.php`. Blend into the target environment by using convincing names related to the application's context (e.g., `class-wp-cache-helper.php`, `config-update.php`, or `index_backup.php`).
