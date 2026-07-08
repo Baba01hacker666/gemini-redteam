@@ -1,3 +1,7 @@
+---
+name: redteam-recon
+description: Focused reconnaissance workflow for authorized security assessments, bug bounty triage, lab targets, and CTF infrastructure.
+---
 # Red Team Recon Skill
 
 Focused reconnaissance workflow for authorized security assessments, bug bounty triage, lab targets, and CTF infrastructure.

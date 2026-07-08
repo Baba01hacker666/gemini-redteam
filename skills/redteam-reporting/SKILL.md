@@ -1,3 +1,7 @@
+---
+name: redteam-reporting
+description: Focused reporting workflow for converting verified red-team work into clear, reproducible assessment artifacts.
+---
 # Red Team Reporting Skill
 
 Focused reporting workflow for converting verified red-team work into clear, reproducible assessment artifacts.

@@ -1,3 +1,7 @@
+---
+name: redteam-source-audit
+description: Focused source-code security review workflow for web applications, CMS extensions, APIs, and supporting services.
+---
 # Red Team Source Audit Skill
 
 Focused source-code security review workflow for web applications, CMS extensions, APIs, and supporting services.

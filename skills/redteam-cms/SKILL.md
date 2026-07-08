@@ -1,3 +1,7 @@
+---
+name: redteam-cms
+description: Focused methodology for authorized CMS fingerprinting, component inventory, misconfiguration review, and vulnerability validation.
+---
 # Red Team CMS Skill
 
 Focused methodology for authorized CMS fingerprinting, component inventory, misconfiguration review, and vulnerability validation.

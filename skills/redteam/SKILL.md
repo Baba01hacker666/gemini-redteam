@@ -1,3 +1,7 @@
+---
+name: redteam
+description: Expertise in offensive security research, vulnerability analysis, CMS-focused application testing, and red team operations.
+---
 # Red Team Security Skill
 
 Expertise in offensive security research, vulnerability analysis, CMS-focused application testing, and red team operations.
