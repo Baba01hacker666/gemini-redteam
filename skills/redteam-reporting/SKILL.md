@@ -32,8 +32,7 @@ Activate when the user asks to:
 
 ## Required report structure
 
-```markdown
-# Red Team Assessment Report
+Please refer to `examples/report-structure.md` for the standard report structure template.
 
 ## Executive Summary
 ## Scope and Assumptions
@@ -51,7 +50,8 @@ Activate when the user asks to:
 
 ## Finding template
 
-```markdown
+Please refer to `examples/finding-template.md` for the finding structure template.
+
 ### FINDING-ID: Title
 
 - Verdict:

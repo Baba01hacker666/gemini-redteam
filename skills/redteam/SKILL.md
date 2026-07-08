@@ -76,50 +76,11 @@ Use this order unless the user supplies a narrower task:
 
 ## CMS routing matrix
 
-When the target CMS is known, use the matching playbook before generic web testing.
-
-| CMS | Identify by | Enumerate first | High-value checks | Verification approach |
-|---|---|---|---|---|
-| WordPress | `/wp-login.php`, `/wp-json/`, `/wp-content/`, generator meta | core version, users, plugins, themes, REST routes, XML-RPC | vulnerable plugins/themes, unauthenticated REST actions, XML-RPC abuse, exposed backups, writable uploads | `wpscan`/manual version evidence, plugin readme/changelog, benign REST probes, non-executable upload canary |
-| Drupal | `/user/login`, `/core/`, `CHANGELOG.txt`, `X-Generator` | core version, modules, themes, Views/JSON:API, exposed files | Drupalgeddon-class CVEs, exposed update.php/install.php, misconfigured private files, dangerous modules | `droopescan`, headers/static hashes, read-only endpoint probes, config/file access checks |
-| Joomla | `/administrator/`, `com_*` routes, `/language/en-GB/` | core version, components, templates, users if permitted | vulnerable components, JCE/media upload paths, debug info, exposed configuration backups | version manifests, component paths, benign component route probes, upload canary where authorized |
-| Magento / Adobe Commerce | `/admin`, `/static/`, `/rest/V1/`, `/graphql` | edition/version, modules, admin path exposure, GraphQL schema, cache/debug | unauth RCE/CVE chains, SSRF, GraphQL info leaks, exposed env/config backups, weak admin hardening | `magescan`, `/magento_version` if exposed, GraphQL introspection where allowed, canary-only exploit proof |
-| Shopify | `cdn.shopify.com`, storefront APIs, theme assets | apps, storefront API exposure, theme files, webhooks if authenticated | leaked tokens, misconfigured private apps, open redirects, customer data exposure | passive/theme evidence, API permission checks with owned token, read-only data boundary tests |
-| Ghost | `/ghost/`, `/ghost/api/`, `content/` assets | version, integrations, members endpoints, themes | exposed content API keys, vulnerable Ghost versions, misconfigured file upload, weak staff invite flows | API key scope check, version evidence, harmless draft/member tests with owned account |
-| Strapi | `/admin`, `/api/*`, GraphQL plugin | version, content types, roles/permissions, upload provider | public CRUD permissions, GraphQL exposure, upload abuse, admin JWT/session issues | role matrix proof, read-only public API checks, canary object/upload with cleanup |
-| Umbraco | `/umbraco/`, `/App_Plugins/`, `.aspx` traces | version, packages, backoffice exposure, media endpoints | vulnerable packages, authenticated template/Razor abuse, exposed install/upgrade, media upload | package manifests, backoffice role verification, canary template/upload in authorized test env |
-| Sitecore | `/sitecore/`, `/-/media/`, `X-Server` hints | version, admin pages, SPE modules, serialization endpoints | exposed admin/debug pages, vulnerable Sitecore versions, deserialization chains, SPE misuse | page/access evidence, authenticated role checks, benign serialization probe in lab only |
-| TYPO3 | `/typo3/`, `typo3conf/`, extension paths | core version, extensions, install tool, fileadmin | vulnerable extensions, exposed install tool, file upload/fileadmin misconfig, default files | extension manifest evidence, install-tool access check, fileadmin read-only/canary checks |
-| PrestaShop | `/admin*`, `/modules/`, theme paths | version, modules, back office exposure, debug | vulnerable modules, install directory, backup/config leakage, upload/import issues | module path/version evidence, benign route probes, canary import/upload where authorized |
-| OpenCart | `/admin/`, `catalog/`, `index.php?route=` | version, extensions, storage path, admin route | exposed storage/config backups, vulnerable extensions, marketplace module issues | route/version evidence, storage access checks, non-destructive extension probes |
+Please refer to `references/cms-routing-matrix.md` for the complete CMS routing matrix and verification approach.
 
 ## CMS command patterns
 
-Use these as starting points and adapt to the rules of engagement:
-
-```bash
-# Passive technology fingerprint
-whatweb -a 3 https://TARGET
-httpx -title -tech-detect -status-code -follow-redirects -u https://TARGET
-
-# CMS-neutral crawling with low request volume
-katana -u https://TARGET -d 2 -rate-limit 3 -silent | tee urls.txt
-
-# WordPress
-wpscan --url https://TARGET --enumerate vp,vt,tt,u --plugins-detection passive --random-user-agent
-curl -s https://TARGET/wp-json/ | jq .
-
-# Drupal / Joomla
-droopescan scan drupal -u https://TARGET
-droopescan scan joomla -u https://TARGET
-
-# Magento
-magescan scan:all https://TARGET
-curl -s https://TARGET/graphql -H 'content-type: application/json' --data '{"query":"{__typename}"}'
-
-# Generic CVE/template triage (pin severity and scope)
-nuclei -u https://TARGET -severity medium,high,critical -rl 5 -o nuclei-findings.txt
-```
+Please refer to `examples/cms-command-patterns.md` for concrete examples of passive and active commands.
 
 ## How to verify findings
 
